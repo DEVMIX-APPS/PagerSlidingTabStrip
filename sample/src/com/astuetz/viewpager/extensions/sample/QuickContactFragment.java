@@ -1,5 +1,6 @@
 package com.astuetz.viewpager.extensions.sample;
 
+import android.annotation.SuppressLint;
 import android.graphics.Point;
 import android.os.Build;
 import android.os.Bundle;
@@ -14,7 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.TextView;
-
 import com.astuetz.PagerSlidingTabStrip;
 import com.astuetz.PagerSlidingTabStrip.IconTabProvider;
 
@@ -50,6 +50,7 @@ public class QuickContactFragment extends DialogFragment {
 		return root;
 	}
 
+	@SuppressLint("NewApi")
 	@SuppressWarnings("deprecation")
 	@Override
 	public void onStart() {

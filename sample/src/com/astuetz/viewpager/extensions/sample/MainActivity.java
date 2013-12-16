@@ -16,6 +16,10 @@
 
 package com.astuetz.viewpager.extensions.sample;
 
+import net.margaritov.preference.colorpicker.ColorPickerDialog;
+import net.margaritov.preference.colorpicker.ColorPickerDialog.OnColorChangedListener;
+import net.margaritov.preference.colorpicker.ColorPickerPreference;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -24,11 +28,13 @@ import android.graphics.drawable.TransitionDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -138,11 +144,22 @@ public class MainActivity extends FragmentActivity {
 
 	public void onColorClicked(View v) {
 
-		int color = Color.parseColor(v.getTag().toString());
-		changeColor(color);
+		/*int color = Color.parseColor(v.getTag().toString());
+		changeColor(color);*/
+		//startActivity(new Intent(this, Test.class));
+		
+		SharedPreferences sharedPrefs = PreferenceManager
+                .getDefaultSharedPreferences(this);
+		
+
+		Log.i("", sharedPrefs.getInt("color_teste", 0)+"");
+		Log.i("", sharedPrefs.getString("color_teste_hex", "")+"");
+		
+		
+		new ColorPickerPreference(this,"color_teste","Escolha a cor de fundo",sharedPrefs.getInt("color_teste", 0)).setHexValueEnabled(true).setAlphaSliderEnabled(true).showDialog(null);
 
 	}
-
+	
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
